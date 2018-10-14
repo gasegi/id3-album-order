@@ -27,9 +27,21 @@ class MetaUtil {
     return Promise.all(_list.map(function (filePath) {
       return _readMeta(path.resolve(_dirPath, filePath)).
         then(function (res) {
-          const meta = res;
-          const retObj = Object.assign({}, meta);
+          const retObj = {};
+
+          retObj.album= res.album;
+          retObj.artist= res.artist;
+          retObj.composer= res.composer;
+          retObj.filePath= res.filePath;
+          retObj.genre= res.genre;
+          retObj.title= res.title;
+          retObj.trackNumber= res.trackNumber;
+          retObj.year= res.year;
+          retObj.partOfSet= res.partOfSet;
+          retObj.performerInfo= res.performerInfo;
+
           retObj.filePath = filePath;
+
           return retObj;
         });
     }));
